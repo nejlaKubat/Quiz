@@ -3,8 +3,10 @@
     const optionButtons = document.querySelector("#options").children;
     const nextButton = document.getElementById("next");
     const explanation = document.getElementById("explanation");
+    const scoreParagraph = document.getElementById("score");
 
     let currentQuestion = 0;
+    let score = 0;
 
     const facts = [
         {
@@ -56,6 +58,7 @@
             optionButtons[i].textContent=facts[currentQuestion].options[i];
         }
         explanation.textContent="";
+        scoreParagraph.textContent=`Score: ${score}/${facts.length*2}`;
     }
 
     setPage();
@@ -91,7 +94,15 @@
                 disable(button);
             }
             //const button = e.target;
-            isCorrect(button.textContent) ? button.classList.add("correct") : button.classList.add("incorrect");
+            if(isCorrect(button.textContent)) {
+                button.classList.add("correct");
+                score+=2;
+            }  
+            else {
+                button.classList.add("incorrect");
+                score-=1;
+            }
+            scoreParagraph.textContent=`Score: ${score}/${facts.length*2}`;
         })
     };
 
@@ -109,6 +120,15 @@
         else {
             disable(nextButton);
             explanation.textContent="No more questions!";
+            if(score>=facts.length*2-1) {
+                console.log("Amazing! You are a true fan!");
+            }
+            else if(score>facts.length) {
+                console.log("Go and rewatch the show you disgust me!");
+            }
+            else {
+                console.log("WTF have you even watched one episode? Where do you live??");
+            }
         }
         
     })
