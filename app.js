@@ -8,33 +8,57 @@
 
     const facts = [
         {
-            statement: "Question 1",
-            answer: true,
-            explanation: "Explanation"
+            statement: "What is Ricks most famous alter ego?",
+            answer: "Pickle Rick",
+            options: ["Tiny Rick", "Pickle Rick", "Wasp Rick"],
+            explanation: "It's been over six years since Pickle Rick premiered on Adult Swim, and he's still talked about, referenced, and seen on t-shirts everywhere."
         },
         {
-            statement: "Question 2",
-            answer: false,
-            explanation: "Explanation"
+            statement: "Who was not at any point Morty's girlfriend?",
+            answer: "Arthricia",
+            options: ["Arthricia", "Annie", "Planetina"],
+            explanation: "Arthricia appeared in only one episode and had a boyfriend at a time."
         },
         {
-            statement: "Question 3",
-            answer: false,
-            explanation: "Explanation"
+            statement: "What dimension do Rick and Morty primarily reside in?",
+            answer: "C-137",
+            options: ["Prime Dimension", "C-131", "C-137"],
+            explanation: "Prime Dimension gets taken over by Cronenbergs, so Rick and Morty went to Dimension C-131 where everyone turned into Cronenbergs."
         },
         {
-            statement: "Question 4",
-            answer: true,
-            explanation: "Explanation"
+            statement: "What alcoholic beverage is Rick often seen drinking?",
+            answer: "Flask of Vodka",
+            options: ["Flask of Whiskey", "Flask of Vodka", "Alien Urine"],
+            explanation: "Rick is depressed and drinks solely for the effect of the booze and doesn't mind the flavourless."
         },
         {
-            statement: "Question 5",
-            answer: false,
-            explanation: "Explanation"
+            statement: "What is the full name of the character Mr. PB?",
+            answer: "Mr. Poopybutthole",
+            options: ["Mr. Poopybut", "Mr. Peanutbutter", "Mr. Poopybutthole"],
+            explanation: "Mr. Peanutbutter is BoJack Horseman's friend."
+        },
+        {
+            statement: "What alien race is Phoenixperson from?",
+            answer: "Birdpeople",
+            options: ["Birdpeople", "Gromflomites", "Bulbhead"],
+            explanation: "Birdperson, briefly known as Phoenixperson, is of Birdpeople species."
+        },
+        {
+            statement: "What’s the name of the universe created by Rick to power his car battery?",
+            answer: "Microverse",
+            options: ["Teenyverse", "Miniverse", "Microverse"],
+            explanation: "Rick made Microverse extracting energy via goobleboxe."
         }
     ]
+    function setPage() {
+        statement.textContent = facts[currentQuestion].statement;
+        for(let i=0; i<3; i++) {
+            optionButtons[i].textContent=facts[currentQuestion].options[i];
+        }
+        explanation.textContent="";
+    }
 
-    statement.textContent = facts[currentQuestion].statement;
+    setPage();
 
     function disable(button) {
         button.setAttribute("disabled", "")
@@ -80,8 +104,7 @@
                 button.classList.remove("correct");
                 button.classList.remove("incorrect");
             }
-            statement.textContent = facts[currentQuestion].statement;
-            explanation.textContent="";
+            setPage();
         }
         else {
             disable(nextButton);
@@ -89,5 +112,6 @@
         }
         
     })
+
     
 })();
